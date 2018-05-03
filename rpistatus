@@ -1,0 +1,29 @@
+#!/bin/bash
+
+num=1
+if [$#=0]
+then
+    $cap=19
+else
+    $cap=$#
+fi
+
+while [ $num -lt $cap ] ; do
+    if [ $num -lt 10 ]
+    then
+	if ping -c 1 rpi0$num &> /dev/null
+	then
+	    echo rpi0$num :Alive
+	else
+	    echo rpi0$num :Dead
+        fi
+    else
+	if ping -c 1 rpi$num &> /dev/null
+	then
+	    echo rpi$num :Alive
+	else
+	    echo rpi$num :Dead
+	fi
+    fi
+    let num=num+1
+done
